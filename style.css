@@ -1,0 +1,35 @@
+:root {
+	
+}
+
+body {
+	background-color: black;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100svh;
+}
+
+#calculator {
+	max-width: 320px;
+}
+
+.calculator-display {
+	text-align: right;
+}
+
+.calculator-display-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.remove-button-container {
+	display: flex;
+}
+
+.keypad-container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
