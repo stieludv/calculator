@@ -10,7 +10,9 @@ body {
 	justify-content: center;
 	align-items: center;
 	min-height: 100svh;
+	margin: 0;
 	font-family: 'Atkinson Hyperlegible', sans-serif;
+	background-color: #121212;
 }
 
 #calculator {
@@ -22,6 +24,7 @@ body {
 	text-align: right;
 	margin-left: 10px;
 	margin-right: 10px;
+	overflow: hidden;
 }
 
 #calculator-primary-display {
@@ -55,6 +58,31 @@ body {
 	border-width: 1px;
 	border-radius: 10px;
 	font-size: 1.4em;
+	cursor: pointer;
+
+	border: none;
+	border-radius: 10px;
+	background-color: #121212;
+	box-shadow: 6px 6px 10px #0d0d0d,
+				-6px -6px 10px #161616;
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #f2f2f2;
+	transition: all 0.2s ease-in-out;
+	background: linear-gradient(to bottom right, rgba(18, 18, 18, 0.9), rgba(255, 77, 77, 0.9)), linear-gradient(to bottom left, rgba(18, 18, 18, 0.7), rgba(255, 77, 77, 0.7));
+	background-size: 500% 500%;
+	background-position: 500% 0%;
+}	
+
+.remove-button:hover {
+box-shadow: 10px 10px 16px #0d0d0d,
+			-10px -10px 16px #161616;
+}
+
+.remove-button:active {
+transform: translateY(2px);
+box-shadow: 2px 2px 5px #0d0d0d,
+			-2px -2px 5px #161616;
 }
 
 .keypad-container {
@@ -73,4 +101,26 @@ body {
 	border-width: 1px;
 	border-radius: 10px;
 	font-size: 1.2em;
+	cursor: pointer;
+	border: none;
+	border-radius: 10px;
+	/* padding: 15px; */
+	background-color: #121212;
+	box-shadow: 6px 6px 10px #0d0d0d,
+				-6px -6px 10px #161616;
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #f2f2f2;
+	transition: all 0.2s ease-in-out;
+}
+
+.key:hover {
+	box-shadow: 10px 10px 16px #0d0d0d,
+				-10px -10px 16px #161616;
+}
+
+.key:active {
+	transform: translateY(2px);
+	box-shadow: 2px 2px 5px #0d0d0d,
+				-2px -2px 5px #161616;
 }
