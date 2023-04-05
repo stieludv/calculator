@@ -104,13 +104,14 @@ box-shadow: 2px 2px 5px #0d0d0d,
 	cursor: pointer;
 	border: none;
 	border-radius: 10px;
-	/* padding: 15px; */
 	background-color: #121212;
 	box-shadow: 6px 6px 10px #0d0d0d,
 				-6px -6px 10px #161616;
 	font-size: 1.2rem;
 	font-weight: bold;
 	color: #f2f2f2;
+	background-size: 100% 100%;
+	background-image: radial-gradient(circle at top left, #121212, #121212);
 	transition: all 0.2s ease-in-out;
 }
 
@@ -124,3 +125,59 @@ box-shadow: 2px 2px 5px #0d0d0d,
 	box-shadow: 2px 2px 5px #0d0d0d,
 				-2px -2px 5px #161616;
 }
+/* 
+#calculator-clear:hover {
+	background-image: radial-gradient(circle at top left, #121212, #8b0000);
+	background-image: radial-gradient(circle at top left, #121212, #8b000054);
+	background-image: radial-gradient(circle at top left, #121212, blue);
+	background-image: radial-gradient(circle at top left, #121212, rgba(0, 0, 255, 0.212));
+	background-size: 100% 100%;
+}
+
+#calculator-clear-entry:hover {
+	background-image: radial-gradient(circle at top left, #121212, #FF8C00);
+	background-image: radial-gradient(circle at top left, #121212, #ff8c0050);
+	background-image: radial-gradient(circle at top left, #121212, blue);
+	background-image: radial-gradient(circle at top left, #121212, rgba(0, 0, 255, 0.212));
+	background-size: 100% 100%;
+}
+
+#calculator-backspace:hover {
+	background-image: radial-gradient(circle at top left, #121212, #E9B000);
+	background-image: radial-gradient(circle at top left, #121212, #e9af0036);
+	background-image: radial-gradient(circle at top left, #121212, blue);
+	background-image: radial-gradient(circle at top left, #121212, rgba(0, 0, 255, 0.212));
+	background-size: 100% 100%;
+}
+
+#calculator-dividey:hover {
+	background-image: radial-gradient(circle at top left, #121212, blue);
+	background-image: radial-gradient(circle at top left, #121212, rgba(0, 0, 255, 0.212));
+	background-size: 100% 100%;
+}
+
+#calculator-multiply:hover {
+	background-image: radial-gradient(circle at top left, #121212, blue);
+	background-image: radial-gradient(circle at top left, #121212, rgba(0, 0, 255, 0.212));
+	background-size: 100% 100%;
+}
+
+#calculator-add:hover {
+	background-image: radial-gradient(circle at top left, #121212, blue);
+	background-image: radial-gradient(circle at top left, #121212, rgba(0, 0, 255, 0.212));
+	background-size: 100% 100%;
+}
+
+#calculator-subtract:hover {
+	background-image: radial-gradient(circle at top left, #121212, blue);
+	background-image: radial-gradient(circle at top left, #121212, rgba(0, 0, 255, 0.212));
+	background-size: 100% 100%;
+}
+
+#calculator-equals:hover {
+	background-image: radial-gradient(circle at top left, #121212, purple);
+	background-image: radial-gradient(circle at top left, #121212, rgba(128, 0, 128, 0.233));
+	background-image: radial-gradient(circle at top left, #121212, blue);
+	background-image: radial-gradient(circle at top left, #121212, rgba(0, 0, 255, 0.212));
+	background-size: 100% 100%;
+} */
