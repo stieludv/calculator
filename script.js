@@ -20,6 +20,36 @@ calculator = {
 
 
 // Calculator UI functions
+function updateSecondaryDisplay(calculator) {
+	const secondaryDisplay = document.querySelector("#calculator-secondary-display");
+	if (calculator.operator !== "") {
+		secondaryDisplay.textContent = calculator.result;
+	}
+	if (calculator.number !== "") {
+		secondaryDisplay.textContent = `${calculator.result} ${calculator.operator}`;
+	}
+	// Display result if operator
+	// Display result and operator if number
+}
+
+function updatePrimaryDisplay(calculator) {
+	const primaryDisplay = document.querySelector("#calculator-primary-display");
+	if (calculator.number !== "") {
+		// Set primary display to calculator number
+		primaryDisplay.textContent = calculator.number;
+	}
+	else if (calculator.operator !== "") {
+		// Set primary display to operator
+		primaryDisplay.textContent = calculator.operator;
+	}
+	else {
+		// Set primary display to result
+		primaryDisplay.textContent = calculator.result;
+	}
+	// Display result if nothing else 
+	// Display operator if exists
+	// Display number if exists 
+}
 
 
 // Calculator UI event listeners
@@ -29,15 +59,18 @@ keys.forEach((key) => {
 		const keyID = e.target.id;
 		
 		// Handle the number keys
+		// The easiest way to remove zeros from a number is by using parseFloat
 		if (key.classList.contains("number")) {
 			const number = keyID.slice(-1);
+			
 			if (calculator.operator === "") {
-				calculator.result += number;
+				calculator.result = String(parseFloat(calculator.result += number));
 			}
 			else {
-				calculator.number += number;
+				calculator.number = String(parseFloat(calculator.number += number));
 			}
 		}
+
 
 		// Helper function to handle the operator keys
 		function getOperatorFromId(id) {
@@ -49,22 +82,17 @@ keys.forEach((key) => {
 		
 		// Handle the operator keys
 		if (key.classList.contains("operator")) {
-			// Should we update the operator OR should we evaluate and then have a new result and select our new operator?
-			// If we have a number (secondary number) and we press any operator it signifies we need to evalutate
+			// If we have two numbers (result and number) we should eval on any operator press (since we have one already)
 			if (calculator.number !== "") {
-				// Evaluate, then select new operator
-				console.log("Evaluating...")
+				let result = String(operate(calculator.operator, calculator.result, calculator.number));
+				calculator.result = result;
+				calculator.number = "";
+				// The operator is updated within the parent if-statement
+			}
 
-				// After we have evaluated - thus set our new result, cleared number and cleared the operator
-				// We can set our new operator
-				const operator = getOperatorFromId(keyID.slice(11));
-				calculator.operator = operator;
-			}
-			else {
-				// Update the currently selected operator state
-				const operator = getOperatorFromId(keyID.slice(11));
-				calculator.operator = operator;
-			}
+			// Update the currently selected operator state
+			const operator = getOperatorFromId(keyID.slice(11));
+			calculator.operator = operator;
 		}
 		
 		// Handle the period key
@@ -77,34 +105,9 @@ keys.forEach((key) => {
 			}
 		}
 
+		updatePrimaryDisplay(calculator);
+		updateSecondaryDisplay(calculator);
 		console.log(calculator);
-
-		// If the key is an operator and we have a current_operator
-		// We want to simply replace that operator, however, if previous number is 0 we cannot allow the division operator (for example)
-		// Also, what should we assume the number is? Starts with 0 unless a number is entered? Are there any best practices/patterns?
-		// Then, should we allow operators such as multiplication or not?
-
-		// If the class of the e.target.id contains number (it is a number key)
-		// We shall continue concatinating it to our current number unless there is an operator selected
-		// If there is an operator selected we are building our second numberd
-		
-		// If the key equals is pressed, we shall use the operate function
-		// However, what happens if we lack one or more numbers - and/or the operator?
-		// Should we perhaps let it calculate "NaN"?
-		
-		// How should we deal with decimal numbers?
-		// If the current number we are building contains one decimal we should not allow adding another one
-		// Perhaps the button should be disabled, however, we still neeed this double checking in the logic
-		
-		// The backspace button should remove the last entered digit from currently building number when pressed
-		// If we have a current operator but have not started building our second number yet, we should remove the operator 
-		// Once the operator is removed we either start removing from the first number or we can choose to start building that number again
-		// (maybe you accidentally pressed an operator button)
-
-		// The clear button should just reset everything to the defaults found in the calculator object (hard-coded) 
-
-
-		
 	})
 })
 
@@ -112,6 +115,8 @@ keys.forEach((key) => {
 
 // Calculator logic functions
 function operate(operator, x, y) {
+	x = parseFloat(x);
+	y = parseFloat(y);
 	let result = null;
 	if (operator === "+") result = addNumbers(x,y);
 	if (operator === "-") result = subtractNumbers(x,y);
