@@ -204,7 +204,10 @@ function operate(operator, x, y) {
 	if (operator === "-") result = subtractNumbers(x,y);
 	if (operator === "*") result = multiplyNumbers(x,y);
 	if (operator === "/") result = divideNumber(x,y);
-	return result;
+	// return result;
+	// To round all results instead:
+	return result.toFixed(4).replace(/\.?0+$/, "");
+;
 }
 
 
