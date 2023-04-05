@@ -1,24 +1,12 @@
 
-// Calculator behaviour:
-// It seems that most calculators use 0 as the default number if an operator is pressed before a number
-// Division by zero is obviously not calculated and produces an Error, any other operation with Error results in... Error
-
 // Calculator state
 calculator = {
-	main_display: "0",
 	secondary_display: "",
 	result: "0",
 	operator: "",
 	number: "",
 	lastExpression: "",
 }
-
-// main_display - displays the current number of importance
-// secondary_display - displays the last operation done (first_number operator second_number)(essentially a last_operation store)
-// result - stores the last resut (as number OR Error)
-// selected_operator - stores the currently selected operator (can be changed if no second_number is entered or will be used to calculate if second number is entered)
-// number - stores the entered number
-
 
 // Calculator UI functions
 function updateSecondaryDisplay(calculator) {
@@ -139,7 +127,6 @@ keys.forEach((key) => {
 		if (keyID === "calculator-clear") {
 			// Reset the calculator state
 			calculator = {
-				main_display: "0",
 				secondary_display: "",
 				result: "0",
 				operator: "",
@@ -202,7 +189,10 @@ keys.forEach((key) => {
 
 
 // On page load - display default calculator state
-
+window.onload = function() {
+	updatePrimaryDisplay(calculator);
+	updateSecondaryDisplay(calculator);	
+};
 
 
 // Calculator logic functions
