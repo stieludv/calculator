@@ -164,6 +164,29 @@ keys.forEach((key) => {
 			}
 		}
 
+		// Handle the clear entry key
+		if (keyID === "calculator-clear-entry") {
+			if (calculator.number !== "") {
+				calculator.number = "";
+			}
+			else if (calculator.operator !== "") {
+				calculator.operator = "";
+			}
+			else {
+				calculator.result = "0";
+			}
+		}
+
+		// Handle the negation key
+		if (keyID === "calculator-negation") {
+			if (calculator.number != "") {
+				calculator.number = calculator.number * -1;
+			}
+			else if (calculator.operator === "") {
+				calculator.result = calculator.result * -1;
+			}
+		}
+
 		// Fix any JS floats that are long for no reason (so it looks nice before displaying)
 
 
