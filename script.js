@@ -10,6 +10,7 @@ calculator = {
 	result: "0",
 	operator: "",
 	number: "",
+	lastExpression: "",
 }
 
 // main_display - displays the current number of importance
@@ -25,8 +26,14 @@ function updateSecondaryDisplay(calculator) {
 	if (calculator.operator !== "") {
 		secondaryDisplay.textContent = calculator.result;
 	}
-	if (calculator.number !== "") {
+	else if (calculator.number !== "") {
 		secondaryDisplay.textContent = `${calculator.result} ${calculator.operator}`;
+	}
+	else {
+		secondaryDisplay.textContent = "";
+	}
+	if (calculator.lastExpression !== "") {
+		secondaryDisplay.textContent = calculator.lastExpression;
 	}
 	// Display result if operator
 	// Display result and operator if number
@@ -44,6 +51,9 @@ function updatePrimaryDisplay(calculator) {
 	}
 	else {
 		// Set primary display to result
+		primaryDisplay.textContent = calculator.result;
+	}
+	if (calculator.lastExpression !== "") {
 		primaryDisplay.textContent = calculator.result;
 	}
 	// Display result if nothing else 
@@ -109,6 +119,7 @@ keys.forEach((key) => {
 			if (calculator.number !== "") {
 				// We can do our expresion calculation
 				let result = String(operate(calculator.operator, calculator.result, calculator.number));
+				calculator.lastExpression = `${calculator.result} ${calculator.operator} ${calculator.number}`;
 				calculator.result = result;
 				calculator.number = "";
 				calculator.operator = "";
@@ -119,7 +130,7 @@ keys.forEach((key) => {
 				let result = String(operate(calculator.operator, calculator.result, calculator.result));
 				calculator.result = result;
 				calculator.number = "";
-				// We do not reset the operator
+				// We do not reset the operator or lastExpresion
 			}
 			// Otherwise the result remains the reslult and we don't have to do anything
 		}
@@ -133,6 +144,7 @@ keys.forEach((key) => {
 				result: "0",
 				operator: "",
 				number: "",
+				lastExpression: "",
 			}	
 		}
 
@@ -152,10 +164,16 @@ keys.forEach((key) => {
 			}
 		}
 
+		// Fix any JS floats that are long for no reason (so it looks nice before displaying)
+
+
 		// Display new calculator state
 		updatePrimaryDisplay(calculator);
 		updateSecondaryDisplay(calculator);
 		console.log(calculator);
+
+		// Reset lastExpression after displaying
+		calculator.lastExpression = "";
 	})
 })
 
