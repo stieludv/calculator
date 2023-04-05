@@ -71,7 +71,6 @@ keys.forEach((key) => {
 			}
 		}
 
-
 		// Helper function to handle the operator keys
 		function getOperatorFromId(id) {
 			if (id === "add") return "+";
@@ -105,11 +104,63 @@ keys.forEach((key) => {
 			}
 		}
 
+		// Handle the equals key
+		if (keyID === "calculator-equals") {
+			if (calculator.number !== "") {
+				// We can do our expresion calculation
+				let result = String(operate(calculator.operator, calculator.result, calculator.number));
+				calculator.result = result;
+				calculator.number = "";
+				calculator.operator = "";
+			}
+			if (calculator.operator !== "") {
+				// If we have an operator but no second number
+				// Use the result as second number
+				let result = String(operate(calculator.operator, calculator.result, calculator.result));
+				calculator.result = result;
+				calculator.number = "";
+				// We do not reset the operator
+			}
+			// Otherwise the result remains the reslult and we don't have to do anything
+		}
+
+		// Handle the clear key
+		if (keyID === "calculator-clear") {
+			// Reset the calculator state
+			calculator = {
+				main_display: "0",
+				secondary_display: "",
+				result: "0",
+				operator: "",
+				number: "",
+			}	
+		}
+
+		// Handle the backspace key
+		if (keyID === "calculator-backspace") {
+			if (calculator.number !== "") {
+				calculator.number = calculator.number.slice(0, calculator.number.length - 1);
+			}
+			else if (calculator.operator !== "") {
+				calculator.operator = "";
+			}
+			else if (calculator.result.length > 1) {
+				calculator.result = calculator.result.slice(0, calculator.result.length - 1);
+			}
+			else {
+				calculator.result = "0";
+			}
+		}
+
+		// Display new calculator state
 		updatePrimaryDisplay(calculator);
 		updateSecondaryDisplay(calculator);
 		console.log(calculator);
 	})
 })
+
+
+// On page load - display default calculator state
 
 
 
